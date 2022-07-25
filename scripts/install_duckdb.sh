@@ -1,6 +1,8 @@
 #!/bin/bash
 TEMP_DIR="../temp"
 
+pip install numpy
+
 # check if temp directory exists
 if [ ! -d "$TEMP_DIR" ]; then
     echo "$TEMP_DIR doesn't exist. Creating."
@@ -14,7 +16,9 @@ if [ ! -d "duckdb" ]; then
 fi
 
 cd duckdb
+git checkout 6ddaae32a751b50a51aa2d0ef8f7d78ed783baf3
 if [ ! -d "build/release" ]; then
+    export BUILD_PYTHON=1 
     echo "Building DuckDB"
     make
 fi

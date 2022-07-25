@@ -93,7 +93,7 @@ std::shared_ptr<DataType> GetDataTypeFromDuckDbType(
     case duckdb::LogicalTypeId::TIME_TZ:
     case duckdb::LogicalTypeId::HUGEINT:
     case duckdb::LogicalTypeId::POINTER:
-    case duckdb::LogicalTypeId::HASH:
+    //case duckdb::LogicalTypeId::HASH:
     case duckdb::LogicalTypeId::VALIDITY:
     case duckdb::LogicalTypeId::UUID:
     case duckdb::LogicalTypeId::STRUCT:
@@ -122,8 +122,9 @@ arrow::Result<int> DuckDBStatement::Execute() {
 
   ArrowArray res_arr;
   ArrowSchema res_schema;
-  
-  QueryResult::ToArrowSchema(&res_schema, res->types, res->names);
+
+  auto timezone_config = duckdb::QueryResult::GetConfigTimezone(*res);
+  QueryResult::ToArrowSchema(&res_schema, res->types, res->names,timezone_config);
   res->Fetch()->ToArrowArray(&res_arr);
   ARROW_ASSIGN_OR_RAISE(result_, arrow::ImportRecordBatch(&res_arr, &res_schema));
   schema_ = result_->schema();
@@ -153,7 +154,7 @@ arrow::Result<std::shared_ptr<Schema>> DuckDBStatement::GetSchema() const {
   return arrow::schema(fields);
 }
 
-}  // namespace sqlite
+}  // namespace duckdbflight
 }  // namespace sql
 }  // namespace flight
 }  // namespace arrow

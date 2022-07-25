@@ -644,7 +644,7 @@ SqlInfoResultMap GetSqlInfoResultMap() {
                  {SqlInfoOptions::SqlSupportsConvert::SQL_CONVERT_INTEGER})}}))}};
 }
 
-}  // namespace sqlite
+}  // namespace duckdbflight
 }  // namespace sql
 }  // namespace flight
 }  // namespace arrow
