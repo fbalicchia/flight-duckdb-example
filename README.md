@@ -15,26 +15,26 @@ $
 ```
 4. Build and install Arrow
 ```bash
-$ ./scripts/install_arrow.sh
+$ cd scripts && ./install_arrow.sh
 ```
 7. Build and install `duckdb`. This is sometimes necessary as conda `compilers` 
 seem to be including incompatible GlibC library with the compiled binaries
 of `duckdb`.
 ```bash
-$ ./scripts/install_duckdb.sh
+$ ./install_duckdb.sh
 ```
 6. Get the data.
 ```bash
-$ mkdir data
+$ mkdir ../data
 $ wget https://github.com/lovasoa/TPCH-sqlite/releases/download/v1.0/TPC-H-small.db -O ../data/TPC-H-small.db
 ```
 7. Create duckdb database.
 ```bash
-$ ./scripts/get_duckdb_database.sh
+$ ./get_duckdb_database.sh
 ```
 9. Build the example.
 ```bash
-$ mkdir build && cd build
+$ cd ./temp
 $ cmake .. -GNinja -DCMAKE_PREFIX_PATH=$CONDA_PREFIX/lib/cmake/arrow
 $ ninja && ./flight_sql
 ```

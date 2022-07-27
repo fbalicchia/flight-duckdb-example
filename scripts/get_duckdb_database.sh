@@ -1,5 +1,5 @@
 #/bin/bash
-TEMP_DIR=$PWD/temp
+TEMP_DIR="../temp"
 
 pip install pandas
 
@@ -9,16 +9,19 @@ if [ ! -d "$TEMP_DIR" ]; then
     mkdir $TEMP_DIR
 fi
 
+# move the database to temp
+cd $TEMP_DIR
+
 # check if duckdb database already exists
 if [ -f "TPC-H-small.duckdb" ]; then
     rm TPC-H-small.duckdb
 fi
 
 # copy the SQLite db
-cp $PWD/data/TPC-H-small.db $TEMP_DIR
+cp ../data/TPC-H-small.db .
 
 # move the data to DuckDB
-$CONDA_PREFIX/bin/python $PWD/scripts/move_data_to_duckdb.py 
+$CONDA_PREFIX/bin/python ../scripts/move_data_to_duckdb.py 
 
 # and push the new DB to data folder
-cp TPC-H-small.duckdb $PWD/data/
+cp TPC-H-small.duckdb ../data/

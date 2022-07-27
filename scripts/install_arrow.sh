@@ -4,6 +4,7 @@ TEMP_DIR="../temp"
 # check if temp directory exists
 if [ ! -d "$TEMP_DIR" ]; then
     echo "$TEMP_DIR doesn't exist. Creating."
+    mkdir $TEMP_DIR
 fi
 
 # clone the repository
@@ -14,7 +15,6 @@ if [ ! -d "arrow" ]; then
 fi
 
 cd arrow
-git checkout 70904dffef25a8c883a1a829c66a1d3
 mamba install -c conda-forge -y --file ci/conda_env_cpp.txt
 mamba install -c conda-forge -y compilers
 cd cpp && mkdir -p build && cd build && rm -rf *

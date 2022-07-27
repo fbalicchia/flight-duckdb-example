@@ -1,11 +1,9 @@
 import pandas as pd
 import sqlite3
 import duckdb
-import os
 
 # establish all connections to databases
-current_directory = os.getcwd()
-con = sqlite3.connect(current_directory+'/temp/TPC-H-small.db')
+con = sqlite3.connect('TPC-H-small.db')
 con_duck = duckdb.connect(database='TPC-H-small.duckdb', read_only=False)
 
 cur = con.cursor()
