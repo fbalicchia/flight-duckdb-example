@@ -31,8 +31,7 @@ namespace flight {
 namespace sql {
 namespace duckdbflight {
 
-// Batch size for SQLite statement results
-static constexpr int kMaxBatchSize = 1024;
+
 
 std::shared_ptr<Schema> DuckDBStatementBatchReader::schema() const { return schema_; }
 

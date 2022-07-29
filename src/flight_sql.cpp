@@ -156,7 +156,7 @@ arrow::Status Main(const std::string& backend, const bool& print_results_flag) {
     ARROW_ASSIGN_OR_RAISE(auto server, CreateServer(backend, databases[backend]));
 
     std::string query_path = "../queries";
-    std::vector<int> skip_queries = {17}; // the rest of the code assumes this is ORDERED vector!
+    std::vector<int> skip_queries = {17}; 
     ARROW_ASSIGN_OR_RAISE(auto client, CreateClient());
 
     flight::FlightCallOptions call_options;
@@ -167,6 +167,8 @@ arrow::Status Main(const std::string& backend, const bool& print_results_flag) {
     }
 
     ARROW_RETURN_NOT_OK(runQueries(client, query_path, skip_queries, call_options, print_results_flag));
+
+
 
     return arrow::Status::OK();
 }

@@ -56,6 +56,10 @@ class DuckDBStatement {
   arrow::Result<std::shared_ptr<RecordBatch>> GetResult();
   // arrow::Result<std::shared_ptr<Schema>> GetArrowSchema();
 
+  /// \brief Returns the underlying duckdb_stmt.
+  /// \return A DuckDB statement.
+  std::shared_ptr<duckdb::PreparedStatement> GetDuckDBStmt() const;
+
  private:
   std::shared_ptr<duckdb::Connection> con_;
   std::shared_ptr<duckdb::PreparedStatement> stmt_;

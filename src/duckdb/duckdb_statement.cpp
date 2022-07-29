@@ -117,6 +117,9 @@ arrow::Result<std::shared_ptr<DuckDBStatement>> DuckDBStatement::Create(
 DuckDBStatement::~DuckDBStatement() { 
 }
 
+std::shared_ptr<duckdb::PreparedStatement> DuckDBStatement::GetDuckDBStmt() const { return stmt_;}
+
+
 arrow::Result<int> DuckDBStatement::Execute() {
   auto res = stmt_->Execute();
 
